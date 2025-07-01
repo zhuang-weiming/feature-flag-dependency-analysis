@@ -1,8 +1,8 @@
 digraph FeatureFlagDeps {
-  "flag_a" -> "baz";
   "flag_a" -> "foo";
-  "flag_b" -> "bar";
+  "flag_a" -> "baz";
   "flag_b" -> "foo";
+  "flag_b" -> "bar";
   "flag_c" -> "baz";
   "flag_c" -> "bar";
 }

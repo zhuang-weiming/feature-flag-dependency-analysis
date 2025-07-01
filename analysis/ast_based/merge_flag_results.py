@@ -39,24 +39,45 @@ for dep in ast_data:
     ast_flags.add(key)
     ast_entries.append({'file': file, 'line': line, 'code': code, 'context': context, 'dependency': dependency, 'source': 'ast'})
 
+# Load Dataflow Analysis results
+try:
+    with open('dataflow_auto_scan_result.json') as f:
+        dataflow_data = json.load(f)
+except FileNotFoundError:
+    dataflow_data = []
+
+dataflow_flags = set()
+dataflow_entries = []
+for dep in dataflow_data:
+    file = dep.get('file')
+    line = dep.get('line')
+    code = dep.get('code')
+    context = dep.get('context')
+    dependency = dep.get('dependency')
+    detail = dep.get('detail')
+    key = (file, line, code)
+    dataflow_flags.add(key)
+    dataflow_entries.append({'file': file, 'line': line, 'code': code, 'context': context, 'dependency': dependency, 'source': 'dataflow_analysis', 'detail': detail})
+
 # Merge and deduplicate
 merged = {}
-for entry in semgrep_entries + ast_entries:
+for entry in semgrep_entries + ast_entries + dataflow_entries:
     key = (entry['file'], entry['line'], entry['code'])
     if key not in merged:
         merged[key] = entry
     else:
         # Merge sources
-        merged[key]['source'] = (
-            merged[key]['source'] + '+' + entry['source']
-            if entry['source'] not in merged[key]['source'] else merged[key]['source']
-        )
+        if entry['source'] not in merged[key]['source']:
+            merged[key]['source'] = merged[key]['source'] + '+' + entry['source']
+        # Merge detail if present
+        if 'detail' in entry and entry['detail']:
+            merged[key]['detail'] = entry['detail']
 
 # Output merged results
 merged_list = list(merged.values())
 print(f"Total unique feature flag dependencies: {len(merged_list)}\n")
 for entry in merged_list:
-    print(entry)
+    print(f"[SOURCE: {entry['source']}] {entry}")
 
 # Optionally, save to file
 with open('merged_flag_dependencies.json', 'w') as f:

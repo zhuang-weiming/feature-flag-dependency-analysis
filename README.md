@@ -130,6 +130,36 @@ rules:
 - Combine with AST-based analysis and reporting for a full dependency/conflict graph.
 - Use the visualization scripts for HTML or Graphviz output.
 
+## Data Flow Analysis (NEW)
+
+This project now includes a semantic Data Flow Analysis (DFA) engine for feature flag dependency/conflict detection:
+- Tracks how feature flag values propagate through assignments, function calls, and returns.
+- Detects when feature flag values reach sensitive operations (e.g., print, log, DB, network).
+- Supports cross-function and return-value taint tracking.
+- Results are clearly marked as `source: 'dataflow_analysis'` in merged outputs.
+
+### How to Use
+
+The full pipeline (including DFA) can be run with:
+
+```sh
+python3 analysis/demos/full_demo.py
+```
+
+Or run DFA alone:
+
+```sh
+PYTHONPATH=src python3 analysis/ast_based/dataflow_runner.py sample_project_python python dataflow_auto_scan_result.json
+```
+
+### Result Marking
+
+- Each finding in `merged_flag_dependencies.json` is marked with its source:
+  - `source: 'semgrep'` (pattern-based)
+  - `source: 'ast'` (AST-based)
+  - `source: 'dataflow_analysis'` (semantic data flow analysis)
+- This allows you to trace which engine found each dependency or conflict.
+
 ---
 
 For more details, see comments in each script and module. Contributions and extensions are welcome!
