@@ -2,65 +2,102 @@
 
 ## Overview
 
-This project supports automated detection, analysis, and visualization of feature flag (toggle) usage and dependencies in multi-language (Python/Java/Go/JS/TS) codebases, including support for CloudBees, Unleash, and other mainstream solutions.
+This project provides automated detection, analysis, and visualization of feature flag (toggle) usage and dependencies in multi-language (Python/Java/Go/JS/TS) codebases, including support for CloudBees, Unleash, and other mainstream solutions.
+
+## Folder Structure
+
+```
+feature-flag-dependency-analysis/
+│
+├── analysis/
+│   ├── semgrep_based/           # Semgrep-based analysis scripts
+│   │   └── semgrep_runner.py
+│   └── ast_based/              # AST-based deep analysis, merging, reporting, visualization
+│       ├── ast_runner.py
+│       ├── flag_dependency_conflict_report.py
+│       ├── visualize_flag_graph.py
+│       └── ...
+│
+├── src/                        # Core analyzers, logic, and CLI
+│   ├── ast_analysis/
+│   ├── feature_flag/
+│   └── cli/
+│
+├── semgrep_rules/              # Semgrep rules for different languages/frameworks
+├── sample_project_python/       # Example projects
+├── sample_project_java/
+├── requirements.txt
+├── README.md
+└── ...
+```
+
+- **src/**: Core, reusable analyzer and reasoning code (imported by scripts in `analysis/`)
+- **analysis/**: All runnable scripts for scanning, merging, reporting, and visualization
+- **semgrep_rules/**: Semgrep rules for static analysis
 
 ## Features
 
-- Automatically extract feature flag usage points, supporting multiple languages and invocation styles
-- Cross-file/module dependency analysis and cycle detection
-- Interactive HTML dependency graph visualization
+- Extract feature flag usage points (multi-language, multi-style)
+- Cross-file/module dependency analysis, cycle/conflict detection
+- Interactive HTML and Graphviz dependency graph visualization
 - Extensible Semgrep rules for different flag frameworks
+- Modular, extensible, and patentable AST-based analysis
 
 ## Quick Start
 
 ### 1. Install Dependencies
 
 ```sh
-pip install -r requirements.txt --trusted-host pypi.org --trusted-host files.pythonhosted.org
+pip install -r requirements.txt
 ```
 
-> It is recommended to use pyvis==0.1.9 to avoid template issues in some environments.
+### 2. One-step Full Demo (Recommended)
 
-### 2. Configure Scan Rules
-
-- Rule files are in `semgrep_rules/`, e.g.:
-  - `python-feature-flags.yml`, `go-feature-flags.yml`, `unleash-feature-flags.yml`
-- For Unleash/CloudBees/Go projects, `unleash-feature-flags.yml` supports the following invocation styles:
-  - Java/JS/TS: `obj.isEnabled(flag)`, `obj.getVariant(flag)`
-  - Python: `obj.is_enabled(flag)`, `obj.get_variant(flag)`
-  - Go: `obj.IsEnabled(flag)`, `obj.GetVariant(flag)`
-
-### 3. Scan Projects
-
-For example, to scan a CloudBees Go project and an Unleash multi-language project:
+To run the full pipeline (Semgrep + AST + merge + report + visualize) in one command:
 
 ```sh
-# Scan CloudBees Go project
-semgrep --config semgrep_rules/go-feature-flags.yml /Users/weimingzhuang/Documents/source_code/CloudBees-sample-Go-app --json > go_scan_result.json
-
-# Scan Unleash multi-language project
-semgrep --config semgrep_rules/unleash-feature-flags.yml /Users/weimingzhuang/Documents/source_code/unleash-managed-projects-sample --json > unleash_scan_result.json
+python3 analysis/demos/full_demo.py
 ```
 
-### 4. View Scan Results
+### 3. Manual Step-by-step (Advanced)
 
-- CloudBees Go project: 2 feature flag usage points detected (in main.go)
-- Unleash project: 2 feature flag usage points detected (in Java/JS code)
-- Results are in `go_scan_result.json` and `unleash_scan_result.json`, which can be further used for dependency analysis and visualization.
-
-### 5. Dependency Analysis & Visualization
-
-To automatically generate the dependency graph and interactive HTML, add your target project paths to the scan directory configuration in `src/main.py`, then run:
+#### a. Run Semgrep-based Analysis
 
 ```sh
-python3 src/main.py
+python3 analysis/semgrep_based/semgrep_runner.py sample_project_python semgrep_rules/python-feature-flags.yml semgrep_auto_scan_result.json
 ```
 
-This will generate `dependency_graph.html`, which you can open in your browser to interactively explore flag distribution and dependencies.
+#### b. Run AST-based Analysis
+
+```sh
+PYTHONPATH=src python3 analysis/ast_based/ast_runner.py sample_project_python python ast_auto_scan_result.json
+```
+
+#### c. Merge and Report
+
+- Merge and deduplicate results:
+  ```sh
+  python3 analysis/ast_based/merge_flag_results.py
+  ```
+- Generate conflict/complexity report:
+  ```sh
+  python3 analysis/ast_based/flag_dependency_conflict_report.py
+  ```
+- Visualize the dependency graph:
+  ```sh
+  python3 analysis/ast_based/visualize_flag_graph.py
+  ```
+
+### 4. Example: Static Reasoning Demo
+
+You can run a reasoning demo directly:
+```sh
+python3 src/feature_flag/reasoning.py
+```
 
 ## Rule Extension & Adaptation
 
-- You can edit `semgrep_rules/*.yml` to match your actual flag framework and invocation style, using `pattern-either` for multi-pattern matching.
+- Edit `semgrep_rules/*.yml` to match your flag framework and invocation style.
 - Supports Java, Go, Python, JS/TS, and more.
 
 ## Example Scan Rule (unleash-feature-flags.yml)
@@ -89,5 +126,10 @@ rules:
 
 ## Result Interpretation
 
-- The scan results will output all flag usage points (file, line number, invocation style), and can extract even single-flag usage automatically.
-- You can combine with the dependency analysis script to automatically generate a dependency graph.
+- Scan results output all flag usage points (file, line, invocation style).
+- Combine with AST-based analysis and reporting for a full dependency/conflict graph.
+- Use the visualization scripts for HTML or Graphviz output.
+
+---
+
+For more details, see comments in each script and module. Contributions and extensions are welcome!

@@ -1,0 +1,194 @@
+[
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_name",
+    "lineno": 3,
+    "context": "is_feature_enabled",
+    "code": "def is_feature_enabled(flag_name):",
+    "file": "sample_project_python/feature_flag.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_a",
+    "lineno": 4,
+    "context": "foo",
+    "code": "if is_feature_enabled(\"flag_a\"):",
+    "file": "sample_project_python/app.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_b",
+    "lineno": 6,
+    "context": "foo",
+    "code": "if is_feature_enabled(\"flag_b\"):",
+    "file": "sample_project_python/app.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_b",
+    "lineno": 10,
+    "context": "bar",
+    "code": "if is_feature_enabled(\"flag_b\"):",
+    "file": "sample_project_python/app.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_c",
+    "lineno": 12,
+    "context": "bar",
+    "code": "if is_feature_enabled(\"flag_c\"):",
+    "file": "sample_project_python/app.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_a",
+    "lineno": 17,
+    "context": "baz",
+    "code": "if is_feature_enabled(\"flag_a\") and is_feature_enabled(\"flag_c\"):",
+    "file": "sample_project_python/app.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_c",
+    "lineno": 17,
+    "context": "baz",
+    "code": "if is_feature_enabled(\"flag_a\") and is_feature_enabled(\"flag_c\"):",
+    "file": "sample_project_python/app.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_name",
+    "lineno": 1,
+    "context": "is_feature_enabled",
+    "code": "def is_feature_enabled(flag_name):",
+    "file": "sample_project_python/main.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_a",
+    "lineno": 6,
+    "context": "foo",
+    "code": "if is_feature_enabled(\"flag_a\"):",
+    "file": "sample_project_python/main.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_b",
+    "lineno": 8,
+    "context": "foo",
+    "code": "if is_feature_enabled(\"flag_b\"):",
+    "file": "sample_project_python/main.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_b",
+    "lineno": 12,
+    "context": "bar",
+    "code": "if is_feature_enabled(\"flag_b\"):",
+    "file": "sample_project_python/main.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_c",
+    "lineno": 14,
+    "context": "bar",
+    "code": "if is_feature_enabled(\"flag_c\"):",
+    "file": "sample_project_python/main.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_a",
+    "lineno": 19,
+    "context": "baz",
+    "code": "if is_feature_enabled(\"flag_a\") and is_feature_enabled(\"flag_c\"):",
+    "file": "sample_project_python/main.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_c",
+    "lineno": 19,
+    "context": "baz",
+    "code": "if is_feature_enabled(\"flag_a\") and is_feature_enabled(\"flag_c\"):",
+    "file": "sample_project_python/main.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_name",
+    "lineno": 3,
+    "context": "is_feature_enabled",
+    "code": "def is_feature_enabled(flag_name):",
+    "file": "sample_project_python/success_case/feature_flag.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_a",
+    "lineno": 5,
+    "context": "foo",
+    "code": "if is_feature_enabled(\"flag_a\"):",
+    "file": "sample_project_python/success_case/app.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_b",
+    "lineno": 9,
+    "context": "bar",
+    "code": "if is_feature_enabled(\"flag_b\"):",
+    "file": "sample_project_python/success_case/app.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_c",
+    "lineno": 13,
+    "context": "baz",
+    "code": "if is_feature_enabled(\"flag_c\"):",
+    "file": "sample_project_python/success_case/app.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_name",
+    "lineno": 3,
+    "context": "is_feature_enabled",
+    "code": "def is_feature_enabled(flag_name):",
+    "file": "sample_project_python/failure_case/feature_flag.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_a",
+    "lineno": 5,
+    "context": "foo",
+    "code": "if is_feature_enabled(\"flag_a\") and is_feature_enabled(\"flag_b\"):",
+    "file": "sample_project_python/failure_case/app.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_b",
+    "lineno": 5,
+    "context": "foo",
+    "code": "if is_feature_enabled(\"flag_a\") and is_feature_enabled(\"flag_b\"):",
+    "file": "sample_project_python/failure_case/app.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_b",
+    "lineno": 9,
+    "context": "bar",
+    "code": "if is_feature_enabled(\"flag_b\"):",
+    "file": "sample_project_python/failure_case/app.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_a",
+    "lineno": 14,
+    "context": "baz",
+    "code": "if is_feature_enabled(\"flag_a\") and is_feature_enabled(\"flag_c\"):",
+    "file": "sample_project_python/failure_case/app.py"
+  },
+  {
+    "type": "is_feature_enabled",
+    "dependency": "flag_c",
+    "lineno": 14,
+    "context": "baz",
+    "code": "if is_feature_enabled(\"flag_a\") and is_feature_enabled(\"flag_c\"):",
+    "file": "sample_project_python/failure_case/app.py"
+  }
+]

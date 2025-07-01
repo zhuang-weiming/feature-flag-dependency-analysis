@@ -1,0 +1,226 @@
+[
+  {
+    "file": "sample_project_python/app.py",
+    "line": 4,
+    "code": "requires login",
+    "source": "semgrep"
+  },
+  {
+    "file": "sample_project_python/app.py",
+    "line": 6,
+    "code": "requires login",
+    "source": "semgrep"
+  },
+  {
+    "file": "sample_project_python/app.py",
+    "line": 10,
+    "code": "requires login",
+    "source": "semgrep"
+  },
+  {
+    "file": "sample_project_python/app.py",
+    "line": 12,
+    "code": "requires login",
+    "source": "semgrep"
+  },
+  {
+    "file": "sample_project_python/app.py",
+    "line": 17,
+    "code": "requires login",
+    "source": "semgrep"
+  },
+  {
+    "file": "sample_project_python/failure_case/app.py",
+    "line": 5,
+    "code": "requires login",
+    "source": "semgrep"
+  },
+  {
+    "file": "sample_project_python/failure_case/app.py",
+    "line": 9,
+    "code": "requires login",
+    "source": "semgrep"
+  },
+  {
+    "file": "sample_project_python/failure_case/app.py",
+    "line": 14,
+    "code": "requires login",
+    "source": "semgrep"
+  },
+  {
+    "file": "sample_project_python/main.py",
+    "line": 6,
+    "code": "requires login",
+    "source": "semgrep"
+  },
+  {
+    "file": "sample_project_python/main.py",
+    "line": 8,
+    "code": "requires login",
+    "source": "semgrep"
+  },
+  {
+    "file": "sample_project_python/main.py",
+    "line": 12,
+    "code": "requires login",
+    "source": "semgrep"
+  },
+  {
+    "file": "sample_project_python/main.py",
+    "line": 14,
+    "code": "requires login",
+    "source": "semgrep"
+  },
+  {
+    "file": "sample_project_python/main.py",
+    "line": 19,
+    "code": "requires login",
+    "source": "semgrep"
+  },
+  {
+    "file": "sample_project_python/success_case/app.py",
+    "line": 5,
+    "code": "requires login",
+    "source": "semgrep"
+  },
+  {
+    "file": "sample_project_python/success_case/app.py",
+    "line": 9,
+    "code": "requires login",
+    "source": "semgrep"
+  },
+  {
+    "file": "sample_project_python/success_case/app.py",
+    "line": 13,
+    "code": "requires login",
+    "source": "semgrep"
+  },
+  {
+    "file": "sample_project_python/app.py",
+    "line": 4,
+    "code": "if is_feature_enabled(\"flag_a\"):",
+    "context": "foo",
+    "dependency": "flag_a",
+    "source": "ast"
+  },
+  {
+    "file": "sample_project_python/app.py",
+    "line": 6,
+    "code": "if is_feature_enabled(\"flag_b\"):",
+    "context": "foo",
+    "dependency": "flag_b",
+    "source": "ast"
+  },
+  {
+    "file": "sample_project_python/app.py",
+    "line": 10,
+    "code": "if is_feature_enabled(\"flag_b\"):",
+    "context": "bar",
+    "dependency": "flag_b",
+    "source": "ast"
+  },
+  {
+    "file": "sample_project_python/app.py",
+    "line": 12,
+    "code": "if is_feature_enabled(\"flag_c\"):",
+    "context": "bar",
+    "dependency": "flag_c",
+    "source": "ast"
+  },
+  {
+    "file": "sample_project_python/app.py",
+    "line": 17,
+    "code": "if is_feature_enabled(\"flag_a\") and is_feature_enabled(\"flag_c\"):",
+    "context": "baz",
+    "dependency": "flag_a",
+    "source": "ast"
+  },
+  {
+    "file": "sample_project_python/main.py",
+    "line": 6,
+    "code": "if is_feature_enabled(\"flag_a\"):",
+    "context": "foo",
+    "dependency": "flag_a",
+    "source": "ast"
+  },
+  {
+    "file": "sample_project_python/main.py",
+    "line": 8,
+    "code": "if is_feature_enabled(\"flag_b\"):",
+    "context": "foo",
+    "dependency": "flag_b",
+    "source": "ast"
+  },
+  {
+    "file": "sample_project_python/main.py",
+    "line": 12,
+    "code": "if is_feature_enabled(\"flag_b\"):",
+    "context": "bar",
+    "dependency": "flag_b",
+    "source": "ast"
+  },
+  {
+    "file": "sample_project_python/main.py",
+    "line": 14,
+    "code": "if is_feature_enabled(\"flag_c\"):",
+    "context": "bar",
+    "dependency": "flag_c",
+    "source": "ast"
+  },
+  {
+    "file": "sample_project_python/main.py",
+    "line": 19,
+    "code": "if is_feature_enabled(\"flag_a\") and is_feature_enabled(\"flag_c\"):",
+    "context": "baz",
+    "dependency": "flag_a",
+    "source": "ast"
+  },
+  {
+    "file": "sample_project_python/success_case/app.py",
+    "line": 5,
+    "code": "if is_feature_enabled(\"flag_a\"):",
+    "context": "foo",
+    "dependency": "flag_a",
+    "source": "ast"
+  },
+  {
+    "file": "sample_project_python/success_case/app.py",
+    "line": 9,
+    "code": "if is_feature_enabled(\"flag_b\"):",
+    "context": "bar",
+    "dependency": "flag_b",
+    "source": "ast"
+  },
+  {
+    "file": "sample_project_python/success_case/app.py",
+    "line": 13,
+    "code": "if is_feature_enabled(\"flag_c\"):",
+    "context": "baz",
+    "dependency": "flag_c",
+    "source": "ast"
+  },
+  {
+    "file": "sample_project_python/failure_case/app.py",
+    "line": 5,
+    "code": "if is_feature_enabled(\"flag_a\") and is_feature_enabled(\"flag_b\"):",
+    "context": "foo",
+    "dependency": "flag_a",
+    "source": "ast"
+  },
+  {
+    "file": "sample_project_python/failure_case/app.py",
+    "line": 9,
+    "code": "if is_feature_enabled(\"flag_b\"):",
+    "context": "bar",
+    "dependency": "flag_b",
+    "source": "ast"
+  },
+  {
+    "file": "sample_project_python/failure_case/app.py",
+    "line": 14,
+    "code": "if is_feature_enabled(\"flag_a\") and is_feature_enabled(\"flag_c\"):",
+    "context": "baz",
+    "dependency": "flag_a",
+    "source": "ast"
+  }
+]
