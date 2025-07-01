@@ -91,7 +91,3 @@ rules:
 
 - The scan results will output all flag usage points (file, line number, invocation style), and can extract even single-flag usage automatically.
 - You can combine with the dependency analysis script to automatically generate a dependency graph.
-
-## License
-
-MIT License
