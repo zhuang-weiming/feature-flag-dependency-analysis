@@ -1,0 +1,10 @@
+rules:
+  - id: find-feature-flags-auto
+    pattern-either:
+      - pattern: is_feature_enabled($FLAG)
+      - pattern: is_feature_enabled("$FLAG")
+      - pattern: is_feature_enabled('$FLAG')
+    message: "Found a feature flag (auto-generated)"
+    languages:
+      - python
+    severity: INFO

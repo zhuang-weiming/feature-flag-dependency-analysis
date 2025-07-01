@@ -1,0 +1,23 @@
+rules:
+  # Unleash feature flag usage in Java, JS, TS, Python, Go
+  - id: unleash-feature-flag
+    patterns:
+      - pattern-either:
+          # Java/JS/TS typical usage
+          - pattern: $OBJ.isEnabled($FLAG, ...)
+          - pattern: $OBJ.isEnabled($FLAG)
+          - pattern: $OBJ.getVariant($FLAG, ...)
+          - pattern: $OBJ.getVariant($FLAG)
+          # Python style
+          - pattern: $OBJ.is_enabled($FLAG, ...)
+          - pattern: $OBJ.is_enabled($FLAG)
+          - pattern: $OBJ.get_variant($FLAG, ...)
+          - pattern: $OBJ.get_variant($FLAG)
+          # Go style
+          - pattern: $OBJ.IsEnabled($FLAG, ...)
+          - pattern: $OBJ.IsEnabled($FLAG)
+          - pattern: $OBJ.GetVariant($FLAG, ...)
+          - pattern: $OBJ.GetVariant($FLAG)
+    message: Found Unleash feature flag usage
+    languages: [java, javascript, typescript, python, go]
+    severity: INFO

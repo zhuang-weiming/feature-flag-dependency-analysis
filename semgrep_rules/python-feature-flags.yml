@@ -1,0 +1,8 @@
+rules:
+  - id: find-feature-flags
+    patterns:
+      - pattern: is_feature_enabled("$FLAG")
+    message: "Found a feature flag"
+    languages:
+      - python
+    severity: INFO

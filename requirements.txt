@@ -1,0 +1,11 @@
+# requirements.txt
+#
+# This file lists the Python dependencies required for the feature flag dependency analysis system.
+#
+# networkx:      Used for graph construction and cycle detection in the dependency analysis.
+# pyvis:         Used for generating interactive HTML visualizations of the dependency graph.
+# semgrep:       Used for static code analysis to extract feature flag usage and call graph information.
+
+networkx
+pyvis==0.1.9  # Use 0.1.9 to avoid template issues in some environments
+semgrep

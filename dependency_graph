@@ -1,0 +1,6 @@
+// Feature Flag Dependencies
+digraph {
+	flag_a -> flag_b [label=foo]
+	flag_b -> flag_c [label=bar]
+	flag_a -> flag_c [label=baz]
+}

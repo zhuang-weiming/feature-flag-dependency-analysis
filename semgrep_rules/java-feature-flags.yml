@@ -1,0 +1,8 @@
+rules:
+  - id: find-feature-flags-java
+    patterns:
+      - pattern: FeatureFlag.isEnabled("$FLAG")
+    message: "Found a feature flag"
+    languages:
+      - java
+    severity: INFO

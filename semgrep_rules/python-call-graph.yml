@@ -1,0 +1,14 @@
+rules:
+  - id: python-function-def
+    pattern: |
+      def $FUNC(...):
+        ...
+    message: "Function definition: $FUNC"
+    languages: [python]
+    severity: INFO
+
+  - id: python-function-call
+    pattern: $FUNC(...)
+    message: "Function call: $FUNC"
+    languages: [python]
+    severity: INFO

@@ -1,0 +1,15 @@
+rules:
+  - id: go-feature-flag
+    patterns:
+      - pattern-either:
+          - pattern: | 
+              $FF := $OBJ.IsEnabled($FLAG, ...)
+          - pattern: | 
+              $OBJ.IsEnabled($FLAG, ...)
+          - pattern: | 
+              $OBJ.IsActive($FLAG, ...)
+          - pattern: | 
+              $OBJ.IsFeatureEnabled($FLAG, ...)
+    message: Found feature flag usage
+    languages: [go]
+    severity: INFO
