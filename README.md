@@ -14,17 +14,21 @@ feature-flag-dependency-analysis/
 │   │   └── semgrep_runner.py
 │   └── ast_based/              # AST-based deep analysis, merging, reporting, visualization
 │       ├── ast_runner.py
+│       ├── dataflow_runner.py  # Data Flow Analysis runner (NEW)
 │       ├── flag_dependency_conflict_report.py
+│       ├── merge_flag_results.py
 │       ├── visualize_flag_graph.py
 │       └── ...
 │
 ├── src/                        # Core analyzers, logic, and CLI
 │   ├── ast_analysis/
+│   │   ├── dataflow_analysis.py  # Data Flow Analysis engine (NEW)
+│   │   └── ...
 │   ├── feature_flag/
 │   └── cli/
 │
 ├── semgrep_rules/              # Semgrep rules for different languages/frameworks
-├── sample_project_python/       # Example projects
+├── sample_project_python/      # Example projects
 ├── sample_project_java/
 ├── requirements.txt
 ├── README.md
@@ -42,6 +46,7 @@ feature-flag-dependency-analysis/
 - Interactive HTML and Graphviz dependency graph visualization
 - Extensible Semgrep rules for different flag frameworks
 - Modular, extensible, and patentable AST-based analysis
+- **Semantic Data Flow Analysis (NEW):** Track feature flag value propagation, taint, and sensitive sinks
 
 ## Quick Start
 
@@ -53,7 +58,7 @@ pip install -r requirements.txt
 
 ### 2. One-step Full Demo (Recommended)
 
-To run the full pipeline (Semgrep + AST + merge + report + visualize) in one command:
+To run the full pipeline (Semgrep + AST + Data Flow + merge + report + visualize) in one command:
 
 ```sh
 python3 analysis/demos/full_demo.py
@@ -73,7 +78,13 @@ python3 analysis/semgrep_based/semgrep_runner.py sample_project_python semgrep_r
 PYTHONPATH=src python3 analysis/ast_based/ast_runner.py sample_project_python python ast_auto_scan_result.json
 ```
 
-#### c. Merge and Report
+#### c. Run Data Flow Analysis (NEW)
+
+```sh
+PYTHONPATH=src python3 analysis/ast_based/dataflow_runner.py sample_project_python python dataflow_auto_scan_result.json
+```
+
+#### d. Merge and Report
 
 - Merge and deduplicate results:
   ```sh
@@ -127,8 +138,9 @@ rules:
 ## Result Interpretation
 
 - Scan results output all flag usage points (file, line, invocation style).
-- Combine with AST-based analysis and reporting for a full dependency/conflict graph.
-- Use the visualization scripts for HTML or Graphviz output.
+- Combine with AST-based and Data Flow analysis for a full dependency/conflict graph.
+- Use the visualization scripts for HTML or Graphviz output. All findings from Semgrep, AST, and Data Flow Analysis are included in the diagrams.
+- To visually distinguish sources, you can customize the visualization script to use different colors or labels based on the `source` field.
 
 ## Data Flow Analysis (NEW)
 
@@ -151,6 +163,13 @@ Or run DFA alone:
 ```sh
 PYTHONPATH=src python3 analysis/ast_based/dataflow_runner.py sample_project_python python dataflow_auto_scan_result.json
 ```
+
+### Visualization
+
+- All findings from Semgrep, AST, and DFA are merged into `merged_flag_dependencies.json`.
+- Visualization scripts (for HTML, PDF, Graphviz) use this merged file as input.
+- All findings, regardless of source, are included in the output diagrams.
+- To visually distinguish sources, you can customize the visualization script to use different colors or labels based on the `source` field.
 
 ### Result Marking
 
